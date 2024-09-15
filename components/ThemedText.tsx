@@ -1,17 +1,20 @@
 import { Text, type TextProps, StyleSheet } from 'react-native';
 
 import { useThemeColor } from '@/hooks/useThemeColor';
+import { badgeVariants } from './ui/badge';
 
 export type ThemedTextProps = TextProps & {
   lightColor?: string;
   darkColor?: string;
   type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
+  variant?: "default" | "secondary" | "destructive" | "outline" | "success" | "warning" | "error" | "info" | "blue" | "green" | "red" | null | undefined
 };
 
 export function ThemedText({
   style,
   lightColor,
   darkColor,
+  variant,
   type = 'default',
   ...rest
 }: ThemedTextProps) {
@@ -19,7 +22,7 @@ export function ThemedText({
 
   return (
     <Text
-      className='text-blue-500'
+      className={badgeVariants({variant})}
       {...rest}
     />
   );
